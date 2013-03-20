@@ -35,21 +35,20 @@ function! s:source.get_keyword_pos(cur_text)
 endfunction
  
 function! s:source.get_complete_words(cur_keyword_pos, cur_keyword_str)
-  echo "flag"
-  if !exists(g:typescript_tools_started)
-    echo "not exists g:typescript_tools_started"
+  if !exists('g:typescript_tools_started')
+    echo "typescript_tools not started. Enter command ':TSSstarthere'"
     return []
   endif
 
-	if bufname('%') == ''
-		return []
-	endif
+  if bufname('%') == ''
+   return []
+  endif
 
   if &modified
     call tss#update()
   endif
 
-  let s:info = tss#cmd("completions".s:member, {'col':s:start})
+  let s:info = tss#cmd("completions ".s:member, {'col':s:start})
 
   let s:result = []
   if type(s:info) == type({})
