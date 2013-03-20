@@ -35,6 +35,7 @@ function! s:source.get_keyword_pos(cur_text)
 endfunction
  
 function! s:source.get_complete_words(cur_keyword_pos, cur_keyword_str)
+  echo "flag"
   if !exists(g:typescript_tools_started)
     echo "not exists g:typescript_tools_started"
     return []
